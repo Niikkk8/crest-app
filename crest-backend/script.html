@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transcript with Video</title>
+  <!-- Add Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <style>
+    .speaker {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="p-8">
+  <div class="max-w-3xl mx-auto">
+    <!-- Video Player -->
+    <div class="mb-8">
+        <video id="myVideo" width="640" height="360" controls>
+            <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Transcript -->
+   
+  </div>
+  <div class="container">
+    <h1>Multiple Choice Questions</h1>
+    <form id="quiz-form">
+      <div class="question">
+        <p>1. What is the Mern stack composed of?</p>
+        <input type="radio" name="question1" value="a"> a) Backend<br>
+        <input type="radio" name="question1" value="b"> b) Frontend<br>
+        <input type="radio" name="question1" value="c"> c) Database<br>
+        <input type="radio" name="question1" value="d"> d) Cloud<br>
+      </div>
+      <div class="question">
+        <p>2.Where does the front end code run?</p>
+        <input type="radio" name="question2" value="a"> a) On the user's computer<br>
+        <input type="radio" name="question2" value="b"> b) Inside a browser<br>
+        <input type="radio" name="question2" value="c"> c) On a separate server<br>
+        <input type="radio" name="question2" value="d"> d) In the cloud<br>
+      </div>
+      <div class="question">
+        <p>3. What is the main purpose of the back end code?</p>
+        <input type="radio" name="question3" value="a"> a) To provide the user interface<br>
+        <input type="radio" name="question3" value="b"> b) To handle the website's functionality<br>
+        <input type="radio" name="question3" value="c"> c) To store data<br>
+        <input type="radio" name="question3" value="d"> d) To connect to databases<br>
+      </div>
+      <div class="question">
+        <p>4. True or False: To be a full stack developer, you only need to be an expert in front end development.</p>
+        <input type="radio" name="question4" value="a"> a) True<br>
+        <input type="radio" name="question4" value="b"> b) False<br>
+      </div>
+      <div class="question">
+        <p>5. What does the acronym "MERN" stand for?</p>
+        <input type="radio" name="question5" value="a"> a) MongoDB, Express, React, Node.js<br>
+        <input type="radio" name="question5" value="b"> b) MySQL, Elixir, React, Native<br>
+        <input type="radio" name="question5" value="c"> c) Mongo, Express, React, Native<br>
+        <input type="radio" name="question5" value="d"> d) MongoDB, Elasticsearch, React, Node.js<br>
+      </div>
+      <button type="submit">Submit Answers</button>
+    </form>
+  </div>
+  
+  <script>
+    document.getElementById('quiz-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        const correctAnswers = {
+            question1: { answer: 'b', timestamp: 50 },
+            question2: { answer: 'b', timestamp: 71 },
+            question3: { answer: 'b', timestamp: 91 },
+            question4: { answer: 'b', timestamp: 138 },
+            question5: { answer: 'a', timestamp: 0 }
+        };
+
+        const userAnswers = {
+            question1: document.querySelector('input[name="question1"]:checked'),
+            question2: document.querySelector('input[name="question2"]:checked'),
+            question3: document.querySelector('input[name="question3"]:checked'),
+            question4: document.querySelector('input[name="question4"]:checked'),
+            question5: document.querySelector('input[name="question5"]:checked')
+        };
+
+        let score = 0;
+        let wrongAnswers = [];
+
+        for (const question in correctAnswers) {
+            const userAnswer = userAnswers[question];
+            if (!userAnswer) {
+                wrongAnswers.push(question);
+                continue; // Move to the next question if no answer is selected
+            }
+            if (userAnswer.value === correctAnswers[question].answer) {
+                score++;
+            } else {
+                const timestamp = correctAnswers[question].timestamp;
+                const video = document.getElementById('myVideo');
+                video.currentTime = timestamp;
+                video.play();
+                alert(`Your answer for question ${question.substring(8)} is incorrect.`);
+                return; // Stop further execution
+            }
+        }
+
+        if (wrongAnswers.length > 0) {
+            alert(`Please answer all questions.`);
+        } else {
+            alert(`You got ${score} out of ${Object.keys(correctAnswers).length} questions correct!`);
+        }
+    });
+</script>
+
+     <div class="space-y-4">
+        <p><span class="speaker">0.160 - 0.648:</span> Hi everyone.</p>
+        <p><span class="speaker">0.710 - 4.678:</span> Today I wanted to talk you through a complete roadmap for the Mern stack.</p>
+        <p><span class="speaker">4.726 - 13.934:</span> If you want to know what it is, why it is used, where it is used, how you can start learning it, more specifically, how you can start learning it better than everyone else, let's get right into the video.</p>
+        <p><span class="speaker">14.054 - 15.734:</span> Also, please ignore this.</p>
+        <p><span class="speaker">15.894 - 17.118:</span> It is fixed very soon.</p>
+        <p><span class="speaker">17.206 - 18.534:</span> Let me start with the disclaimer.</p>
+        <p><span class="speaker">18.654 - 21.758:</span> The disclaimer is that roadmaps like these are extremely useless.</p>
+        <p><span class="speaker">21.806 - 25.086:</span> The reason for that is you know what to do, but like you don't really do that.</p>
+        <p><span class="speaker">25.190 - 33.102:</span> I would strongly suggest after this video ends, please try to go through these three videos in which I'm actually teaching the monster stack from the basics.</p>
+        <p><span class="speaker">33.158 - 41.326:</span> And we've already had three parts now, and I'll be adding more parts to this that you actually start coding, actually start building projects, actually start making assignments.</p>
+        <p><span class="speaker">41.390 - 43.630:</span> That's the only way to learn the one stack.</p>
+        <p><span class="speaker">43.742 - 47.494:</span> This video will give you a roadmap, but unless you execute on it, you won't really learn anything.</p>
+        <p><span class="speaker">47.574 - 50.438:</span> The full stack development is generally divided into two parts.</p>
+        <p><span class="speaker">50.486 - 52.462:</span> It's the front end and the backend.</p>
+        <p><span class="speaker">52.598 - 53.958:</span> Front end is what you see.</p>
+        <p><span class="speaker">54.006 - 61.554:</span> Front end is what it reaches the user inside their browser, and backend is where a lot of magic happens, but you don't really see it as an end user.</p>
+        <p><span class="speaker">61.694 - 62.746:</span> So what is fronted on chat?</p>
+        <p><span class="speaker">62.770 - 63.434:</span> Gpd.com?</p>
+        <p><span class="speaker">63.474 - 64.698:</span> It's basically all of this.</p>
+        <p><span class="speaker">64.786 - 71.402:</span> These two buttons, this input box, this button right here, all of this is what's called front end code.</p>
+        <p><span class="speaker">71.538 - 80.810:</span> And one very high level thing you need to know is this front end code, even though it's written by developers like us, it's always run or it's always executed inside a browser.</p>
+        <p><span class="speaker">80.842 - 84.410:</span> So you can effectively, you basically give this code out to the end user.</p>
+        <p><span class="speaker">84.442 - 88.434:</span> They can actually see this code because this code needs to run on the browser.</p>
+        <p><span class="speaker">88.474 - 91.130:</span> That's the only way for you to render a screen like this.</p>
+        <p><span class="speaker">91.202 - 98.122:</span> The back end code, however, back in code basically is all the functionality of the website, which is actually stored on a server.</p>
+        <p><span class="speaker">98.214 - 102.310:</span> Now, as a front end developer, you won't really be writing any of this back end code.</p>
+        <p><span class="speaker">102.426 - 107.106:</span> However, you will need to know some basics about this back end code.</p>
+        <p><span class="speaker">107.258 - 112.854:</span> So for this video, I will try to give you a 50,000 feet overview of this back end code.</p>
+        <p><span class="speaker">112.930 - 114.890:</span> Don't worry too much about it for now.</p>
+        <p><span class="speaker">114.930 - 121.498:</span> As we go through the series, we will try to understand more and more about this backend code.</p>
+        <p><span class="speaker">121.578 - 123.858:</span> We'll start with the front end.</p>
+        <p><span class="speaker">123.934 - 128.346:</span> Okay, so there are three main technologies or there are three main languages that you need to learn if you want to get started with front end development.</p>
+        <p><span class="speaker">128.398 - 133.798:</span> So one is HTML, the second is CSS, and the third is JavaScript.</p>
+        <p><span class="speaker">133.866 - 135.918:</span> HTML stands for Hypertext Markup Language.</p>
+        <p><span class="speaker">135.986 - 138.250:</span> This is basically the structure of your website.</p>
+        <p><span class="speaker">138.310 - 145.114:</span> If you want to add a button, if you want to add a text box, if you want to add a label, anything like that, you write it in HTML.</p>
+        <p><span class="speaker">145.186 - 147.106:</span> Next up is CSS.</p>
+        <p><span class="speaker">147.162 - 153.106:</span> CSS stands for Cascading Style Sheets, and CSS basically is the style of your website.</p>
+        <p><span class="speaker">153.226 - 160.498:</span> So if you want to change the color of a button, if you want to change the font of your text, if you want to change the spacing between your paragraphs, you do it in CSS.</p>
+        <p><span class="speaker">160.530 - 164.498:</span> And finally, the most important language out of these three is JavaScript.</p>
+        <p><span class="speaker">164.530 - 167.226:</span> So JavaScript is the language of the web.</p>
+        <p><span class="speaker">167.314 - 171.330:</span> JavaScript is the programming language of the web.</p>
+        <p><span class="speaker">171.358 - 175.362:</span> So all the functionality that you see on a website is done using JavaScript.</p>
+        <p><span class="speaker">175.446 - 179.186:</span> You click a button, you submit a form, you do anything, all of that is JavaScript.</p>
+        <p><span class="speaker">179.226 - 181.482:</span> JavaScript makes your website interactive.</p>
+        <p><span class="speaker">181.590 - 187.482:</span> So these are the three main technologies that you need to learn if you want to get started with front end development.</p>
+        <p><span class="speaker">187.562 - 190.314:</span> So now, let's talk about the back end.</p>
+        <p><span class="speaker">190.390 - 194.746:</span> So the back end can be written in many, many languages.</p>
+        <p><span class="speaker">194.822 - 198.478:</span> You can write your backend code in Python, you can write your back end code in Ruby,</p>
+        <p><span class="speaker">198.562 - 200.458:</span> you can write it in Java, you can write it in Go,</p>
+        <p><span class="speaker">200.522 - 202.466:</span> you can write it in C++, you can write it in JavaScript.</p>
+        <p><span class="speaker">202.542 - 205.754:</span> The most popular language, however, is JavaScript, and</p>
+        <p><span class="speaker">205.826 - 208.490:</span> the framework that we'll be using is called Node.js.</p>
+        <p><span class="speaker">208.586 - 211.258:</span> And if you want to know more about it, we can discuss it later.</p>
+        <p><span class="speaker">211.334 - 213.266:</span> But let's talk about the back end.</p>
+        <p><span class="speaker">213.378 - 217.178:</span> So what does a backend do?</p>
+        <p><span class="speaker">217.242 - 224.186:</span> So the backend basically is the functionality of your website.</p>
+        <p><span class="speaker">224.242 - 226.298:</span> It's everything that the user doesn't see,</p>
+        <p><span class="speaker">226.370 - 230.626:</span> but it's everything that makes your website tick.</p>
+        <p><span class="speaker">230.690 - 235.674:</span> So if you want to create a user account,</p>
+        <p><span class="speaker">235.738 - 240.306:</span> if you want to submit a form, if you want to upload an image,</p>
+        <p><span class="speaker">240.378 - 244.386:</span> if you want to save something in the database, all of that is done in the backend.</p>
+        <p><span class="speaker">244.426 - 248.338:</span> So how do you actually learn all of this?</p>
+        <p><span class="speaker">248.402 - 253.498:</span> Well, the good news is that you are in the right place because in the coming videos,</p>
+        <p><span class="speaker">253.586 - 257.370:</span> I will be teaching you all of this from the basics.</p>
+        <p><span class="speaker">257.442 - 261.298:</span> So what we'll do is we'll start with the front end first.</p>
+        <p><span class="speaker">261.370 - 266.306:</span> We'll go through HTML, we'll go through CSS, we'll go through JavaScript.</p>
+        <p><span class="speaker">266.378 - 271.530:</span> And then we'll go through the backend, and then we'll make some full stack applications.</p>
+        <p><span class="speaker">271.578 - 275.474:</span> And hopefully by the end of it, you'll have a very good understanding of the Mern stack.</p>
+        <p><span class="speaker">275.562 - 277.274:</span> So let's talk about the front end first.</p>
+        <p><span class="speaker">277.370 - 279.242:</span> And for that, we will talk about HTML.</p>
+        <p><span class="speaker">279.314 - 282.418:</span> So HTML is the structure of your website.</p>
+        <p><span class="speaker">282.498 - 288.458:</span> It's the structure, it's the skeleton, it's what makes your website tick.</p>
+        <p><span class="speaker">288.502 - 292.370:</span> So if you want to add a button, if you want to add a text box, if you want to add a label,</p>
+        <p><span class="speaker">292.450 - 295.298:</span> if you want to add an image, if you want to add anything,</p>
+        <p><span class="speaker">295.378 - 298.402:</span> you add it in HTML.</p>
+        <p><span class="speaker">298.482 - 302.354:</span> It's basically all of the elements that you see on a website.</p>
+        <p><span class="speaker">302.402 - 306.522:</span> So if you want to add a button, you write &lt;button&gt;.</p>
+        <p><span class="speaker">306.594 - 308.494:</span> If you want to add a text box, you write &lt;input&gt;.</p>
+        <p><span class="speaker">308.594 - 314.434:</span> If you want to add a label, you write &lt;label&gt;. And it's as simple as that.</p>
+        <p><span class="speaker">314.522 - 318.418:</span> So let's talk about the different elements in HTML.</p>
+        <p><span class="speaker">318.478 - 320.330:</span> So the first one is the button.</p>
+        <p><span class="speaker">320.402 - 323.250:</span> So if you want to add a button,</p>
+        <p><span class="speaker">323.334 - 328.390:</span> you basically write &lt;button&gt; and then you give it a name, and then you close the button.</p>
+        <p><span class="speaker">328.450 - 332.474:</span> The next element is the text box.</p>
+        <p><span class="speaker">332.534 - 337.450:</span> So if you want to add a text box, you write &lt;input&gt; and then you close the input.</p>
+        <p><span class="speaker">337.538 - 342.458:</span> And then if you want to add a label, you write &lt;label&gt; and then you close the label.</p>
+        <p><span class="speaker">342.518 - 346.458:</span> So those are the three main elements in HTML.</p>
+        <p><span class="speaker">346.538 - 350.410:</span> And then we have something called div.</p>
+        <p><span class="speaker">350.474 - 354.466:</span> So div is basically a container.</p>
+        <p><span class="speaker">354.538 - 360.414:</span> So if you want to put a couple of elements inside a container, you use div.</p>
+        <p><span class="speaker">360.502 - 363.426:</span> So you write &lt;div&gt; and then you close the div.</p>
+        <p><span class="speaker">363.502 - 366.434:</span> And then you put whatever you want inside that div.</p>
+        <p><span class="speaker">366.514 - 372.434:</span> So those are the three main elements in HTML.</p>
+        <p><span class="speaker">372.514 - 374.442:</span> So let's talk about CSS.</p>
+        <p><span class="speaker">374.518 - 377.274:</span> So CSS stands for Cascading Style Sheets.</p>
+        <p><span class="speaker">377.354 - 383.298:</span> So CSS is basically the style of your website.</p>
+        <p><span class="speaker">383.354 - 387.418:</span> It's what makes your website look good.</p>
+        <p><span class="speaker">387.478 - 393.250:</span> So if you want to change the color of a button, if you want to change the font of your text,</p>
+        <p><span class="speaker">393.330 - 398.414:</span> if you want to change the spacing between your paragraphs, you do it in CSS.</p>
+        <p><span class="speaker">398.502 - 402.338:</span> So how do you actually add CSS to your HTML?</p>
+        <p><span class="speaker">402.402 - 407.458:</span> Well, the good news is that there are three main ways to add CSS to your HTML.</p>
+        <p><span class="speaker">407.542 - 413.298:</span> So the first way is you can add it inline, the second way is you can add it internally,</p>
+        <p><span class="speaker">413.374 - 418.258:</span> and the third way is you can add it externally.</p>
+        <p><span class="speaker">418.314 - 422.298:</span> So what do I mean by that?</p>
+        <p><span class="speaker">422.366 - 427.338:</span> So the first way is you can add it inline.</p>
+        <p><span class="speaker">427.406 - 431.498:</span> So if you want to change the color of a button, what you do is you write style=</p>
+        <p><span class="speaker">431.578 - 434.434:</span> and then you give it a color.</p>
+        <p><span class="speaker">434.502 - 438.498:</span> And that's how you add inline CSS.</p>
+        <p><span class="speaker">438.578 - 442.330:</span> The second way is you can add it internally.</p>
+        <p><span class="speaker">442.398 - 447.434:</span> So if you want to add CSS to your HTML, what you do is you write &lt;style&gt;</p>
+        <p><span class="speaker">447.518 - 450.370:</span> and then you put all your CSS inside that style tag,</p>
+        <p><span class="speaker">450.434 - 452.434:</span> and then you close the style tag.</p>
+        <p><span class="speaker">452.498 - 456.442:</span> And that's how you add internal CSS.</p>
+        <p><span class="speaker">456.514 - 460.338:</span> The third way is you can add it externally.</p>
+        <p><span class="speaker">460.414 - 465.330:</span> So if you want to add CSS to your HTML externally,</p>
+        <p><span class="speaker">465.398 - 470.414:</span> what you do is you create a separate file, you call it something.css,</p>
+        <p><span class="speaker">470.498 - 475.266:</span> and then you link it to your HTML using the link tag.</p>
+        <p><span class="speaker">475.334 - 480.434:</span> And that's how you add external CSS to your HTML.</p>
+        <p><span class="speaker">480.514 - 484.314:</span> So those are the three main ways to add CSS to your HTML.</p>
+        <p><span class="speaker">484.406 - 487.322:</span> So let's talk about JavaScript.</p>
+        <p><span class="speaker">487.390 - 490.298:</span> So JavaScript is the language of the web.</p>
+        <p><span class="speaker">490.374 - 495.434:</span> JavaScript is the programming language of the web.</p>
+        <p><span class="speaker">495.518 - 499.458:</span> So all the functionality that you see on a website is done using JavaScript.</p>
+        <p><span class="speaker">499.522 - 502.306:</span> So if you click a button, if you submit a form,</p>
+        <p><span class="speaker">502.374 - 507.378:</span> if you do anything, all of that is JavaScript.</p>
+        <p><span class="speaker">507.450 - 511.498:</span> And JavaScript makes your website interactive.</p>
+        <p><span class="speaker">511.578 - 515.266:</span> So how do you actually add JavaScript to your HTML?</p>
+        <p><span class="speaker">515.342 - 519.458:</span> Well, the good news is that there are three main ways to add JavaScript to your HTML.</p>
+        <p><span class="speaker">519.522 - 524.418:</span> So the first way is you can add it inline,</p>
+        <p><span class="speaker">524.502 - 528.402:</span> the second way is you can add it internally,</p>
+        <p><span class="speaker">528.498 - 532.458:</span> and the third way is you can add it externally.</p>
+        <p><span class="speaker">532.542 - 536.322:</span> So what do I mean by that?</p>
+        <p><span class="speaker">536.386 - 541.402:</span> So the first way is you can add it inline.</p>
+        <p><span class="speaker">541.478 - 546.458:</span> So if you want to add JavaScript to your HTML, what you do is you write script,</p>
+        <p><span class="speaker">546.534 - 550.474:</span> and then you write your JavaScript inside that script tag,</p>
+        <p><span class="speaker">550.554 - 552.434:</span> and then you close the script tag.</p>
+        <p><span class="speaker">552.498 - 556.338:</span> And that's how you add inline JavaScript.</p>
+        <p><span class="speaker">556.406 - 560.386:</span> The second way is you can add it internally.</p>
+        <p><span class="speaker">560.458 - 565.474:</span> So if you want to add JavaScript to your HTML internally,</p>
+        <p><span class="speaker">565.558 - 570.458:</span> what you do is you write &lt;script&gt; and then you put all your JavaScript inside that script tag,</p>
+        <p><span class="speaker">570.534 - 573.458:</span> and then you close the script tag.</p>
+        <p><span class="speaker">573.534 - 577.338:</span> And that's how you add internal JavaScript.</p>
+        <p><span class="speaker">577.406 - 581.298:</span> The third way is you can add it externally.</p>
+        <p><span class="speaker">581.366 - 586.322:</span> So if you want to add JavaScript to your HTML externally,</p>
+        <p><span class="speaker">586.398 - 591.394:</span> what you do is you create a separate file, you call it something.js,</p>
+        <p><span class="speaker">591.478 - 596.426:</span> and then you link it to your HTML using the script tag.</p>
+        <p><span class="speaker">596.494 - 601.402:</span> And that's how you add external JavaScript to your HTML.</p>
+        <p><span class="speaker">601.470 - 605.258:</span> So those are the three main ways to add JavaScript to your HTML.</p>
+        <p><span class="speaker">605.334 - 607.258:</span> Let's do a quick recap.</p>
+        <p><span class="speaker">607.346 - 610.330:</span> So we talked about the Mern stack, which is basically MongoDB, Express.js,</p>
+        <p><span class="speaker">610.402 - 614.458:</span> React.js, and Node.js.</p>
+        <p><span class="speaker">614.530 - 619.250:</span> And then we talked about front end development and back end development.</p>
+        <p><span class="speaker">619.338 - 623.458:</span> And then we talked about HTML, CSS, and JavaScript.</p>
+        <p><span class="speaker">623.514 - 628.306:</span> And then we talked about how to add CSS and JavaScript to your HTML.</p>
+        <p><span class="speaker">628.390 - 632.322:</span> So hopefully this video was helpful.</p>
+        <p><span class="speaker">632.390 - 636.298:</span> If you have any questions, please leave them in the comments below.</p>
+        <p><span class="speaker">636.366 - 639.202:</span> Thank you for watching, and I'll see you in the next video.</p>
+      </div>
+</body>
+</html>
